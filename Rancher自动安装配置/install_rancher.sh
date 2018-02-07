@@ -37,7 +37,7 @@
 
 
 #download the rancher docker image
-docker images -q rancher/server:stable | grep -q && {
+docker images -q rancher/server:stable | grep -q -E "[a-z0-9]" && {
     echo -e "\033[1;32mrancher server stable had been installed before\033[0m";
 } || {
     docker pull rancher/server:stable && {
