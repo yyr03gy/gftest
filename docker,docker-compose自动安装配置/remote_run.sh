@@ -39,9 +39,7 @@ done
 }
 
 #git clone scripts to user home dir
-[ -d "${HOME}/gftest" ] && {
-    cd ${HOME}/gftest && git pull
-} || {
+[ -d "${HOME}/gftest" ] || {
     git clone https://github.com/yyr03gy/gftest.git ${HOME}/gftest || {
         echo "git clone failed";
         exit 1;
@@ -56,11 +54,11 @@ done
 ##run
 /usr/bin/expect<<-EOF
 set timeout -1
-spawn scp -o StrictHostKeyChecking=no -P ${port} ${HOME}/gftest/docker_and_docker-compose_auto_install/install_docker.sh ${user}@${host}:${remote_dir}
+spawn scp -o StrictHostKeyChecking=no -P ${port} ${HOME}/gftest/docker,docker-compose自动安装配置/install_docker.sh ${user}@${host}:${remote_dir}
 expect "*password:"
 send "${passwd}\r\n"
 expect eof
-spawn ssh -o StrictHostKeyChecking=no -p ${port} ${user}@${host} /bin/bash ${remote_dir}/install_docker.sh
+spawn ssh -o StrictHostKeyChecking=no -p ${port} ${user}@${host} /bin/bash ${remote_dir}/docker,docker-compose自动安装配置/install_docker.sh
 expect "*password:"
 send "${passwd}\r\n"
 expect eof

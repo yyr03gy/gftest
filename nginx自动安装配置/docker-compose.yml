@@ -1,0 +1,9 @@
+version: '2'
+services:
+  web:
+    image: nginx:latest
+    ports:
+     - "80:80"
+    volumes:
+      - "/data/mysql:/var/lib/mysql"
+      - "${abs_path}/gftest.conf:/etc/nginx/conf.d/gftest.conf"

@@ -8,7 +8,8 @@
     echo -e "\033[1;32mrancher cli v0.6.7 had been installed before\033[0m";
 } || {
     cd /tmp && \
-    wget https://github.com/rancher/cli/releases/download/v0.6.7/rancher-linux-amd64-v0.6.7.tar.gz && \
+    wget -O rancher-linux-amd64-v0.6.7.tar.gz \
+    https://github.com/rancher/cli/releases/download/v0.6.7/rancher-linux-amd64-v0.6.7.tar.gz && \
     tar -xzf rancher-linux-amd64-v0.6.7.tar.gz && \
     /bin/cp -f rancher-v0.6.7/rancher /usr/local/sbin/ && \
     /usr/local/sbin/rancher --version | grep -q "0.6.7" && {
@@ -24,7 +25,8 @@
     echo -e "\033[1;32mrancher compose v0.12.5 had been installed before\033[0m";
 } || {
     cd /tmp && \
-    wget https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.xz && \
+    wget -O rancher-compose-linux-amd64-v0.12.5.tar.xz \
+    https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.xz && \
     tar -xf rancher-compose-linux-amd64-v0.12.5.tar.xz && \
     /bin/cp -f rancher-compose-v0.12.5/rancher-compose /usr/local/sbin/ && \
     /usr/local/sbin/rancher-compose --version | grep -q "0.12.5" && {
