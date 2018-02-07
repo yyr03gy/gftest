@@ -1,4 +1,6 @@
 #!/bin/bash
+#本脚本安装docker docker-compose lastest版本
+
 
 #check the run user
 [ "`whoami`" != "root" ] && {
