@@ -1,0 +1,12 @@
+version: '2'
+services:
+  db:
+    image: mysql5_lastest_ubuntu:latest
+    ports:
+     - "3306:3306"
+    volumes:
+      - "/data/mysql:/var/lib/mysql"
+      - "/home/nemo/mysqldocker/mysql5.7docker/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf"
+    environment:
+      - MYSQL_ROOT_PASSWORD=gftest@success
+      - MYSQL_ROOT_HOST=%
