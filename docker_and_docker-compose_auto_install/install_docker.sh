@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #check the run user
-[ "`whoami`" ~= "root" ] && {
+[ "`whoami`" != "root" ] && {
     echo "please run this script on root";
     exit 1
 }
