@@ -1,3 +1,11 @@
+##文件说明
+1.install_docker.sh --- 自动安装docker,docker-compose lastest版本
+2.remote_run.sh --- git 脚本库到本地机器，然后传到远程机器指定目录上执行install_docker.sh脚本。
+3.install_success.PNG --- 执行远程脚本图
+
+
+##使用说明 
+
 注意，运行install_docker.sh脚本的用户需要root用户。
 运行安装docker-compose的时候可能会出现如下错误：
     curl: (7) Failed to connect to github-production-release-asset-2e65be.s3.amazonaws.com port 443: Connection refused

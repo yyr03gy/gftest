@@ -1,6 +1,6 @@
 #!/bin/bash
 #本脚本git clone 脚本仓库到本地然后
-#上传docker docker-compose安装脚本install_docker.sh到远程主机上运行
+#上传仓库当中的目录 <nginx自动安装配置> 到远程主机上指定的目录，并在远程主机上运行autoinstall.sh安装部署脚本
 
 #check home dir
 [ -z "$HOME" ] && { echo "can't found home dir";exit 1; }
@@ -54,17 +54,13 @@ done
 ##run
 /usr/bin/expect<<-EOF
 set timeout -1
-spawn scp -r -o StrictHostKeyChecking=no -P ${port} ${HOME}/gftest/docker,docker-compose自动安装配置 ${user}@${host}:${remote_dir}
+spawn scp -r -o StrictHostKeyChecking=no -P ${port} ${HOME}/gftest/nginx自动安装配置 ${user}@${host}:${remote_dir}
 expect "*password:"
 send "${passwd}\r\n"
 expect eof
-spawn ssh -o StrictHostKeyChecking=no -p ${port} ${user}@${host} /bin/bash ${remote_dir}/docker,docker-compose自动安装配置/install_docker.sh
+spawn ssh -o StrictHostKeyChecking=no -p ${port} ${user}@${host} /bin/bash ${remote_dir}/nginx自动安装配置/autoinstall.sh
 expect "*password:"
 send "${passwd}\r\n"
 expect eof
 exit
 EOF
-
-
-
-

@@ -26,7 +26,7 @@ source ${abs_path}/rancher_api.conf
 [ -d "/data/mysql" ] || { mkdir -p /data/mysql; }
 
 #替换mysql文件成为绝对路径（rancher 不支持相对路径）
-sed -i 's@${abs_path}@'${abs_path}'@' docker-compose.yml
+sed -i -r 's@[^"]*(/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf)@'${abs_path}'\1@' docker-compose.yml
 
 
 rancher-compose --url $RANCHER_URL --access-key $RANCHER_ACCESS_KEY --secret-key $RANCHER_SECRET_KEY -p mysql5_stack1 up -d && {
