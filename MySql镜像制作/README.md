@@ -8,6 +8,7 @@
 8.mysqlinit.sh ---- mysql容器的entrypoint脚本，用于初始化root用户密码和以docker-compose.yml当中指定的用户运行mysql进程
 9.rancher_api.conf ---- rancher 的api参数设置(key,url)，用于rancher-compose调用rancher的api
 10.remote_run.sh ---- 把本部署功能到远程机器上执行
+11.check_mysql.sh ---- 测试mysql服务是否正常的脚本（不加参数运行显示用法）
 
 
 ##使用说明

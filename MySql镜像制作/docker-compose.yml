@@ -10,4 +10,3 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=gftest@success
       - MYSQL_RUN_USER=gftest
-    env_file: .env
