@@ -52,6 +52,8 @@ docker images -q rancher/server:stable | grep -q -E "[a-z0-9]" && {
 
 #start the rancher server from docker-compose
 cd `dirname ${0}`
+#make the volumes
+[ -d "/data/rancher/mysql" ] || { mkdir -p /data/rancher/mysql; }
 docker-compose up -d && {
     echo -e "\033[1;32mstart rancher success\033[0m";
 } || {

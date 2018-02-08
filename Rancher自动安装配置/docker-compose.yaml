@@ -4,3 +4,5 @@ services:
     image: "rancher/server:stable"
     ports:
      - "8080:8080"
+    volumes:
+      - "/data/rancher/mysql:/var/lib/mysql"
