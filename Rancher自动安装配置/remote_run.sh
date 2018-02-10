@@ -39,14 +39,12 @@ done
 }
 
 #git clone scripts to user home dir
-#[ -d "${HOME}/gftest" ] && {
-#    cd ${HOME}/gftest && git pull
-#} || {
-#    git clone https://github.com/yyr03gy/gftest.git ${HOME}/gftest || {
-#        echo "git clone failed";
-#        exit 1;
-#    }
-#}
+[ -d "${HOME}/gftest" ] || {
+    git clone https://github.com/yyr03gy/gftest.git ${HOME}/gftest || {
+        echo "git clone failed";
+        exit 1;
+    }
+}
 
 ##check expect have been installed
 [ -x "/usr/bin/expect" ] || {

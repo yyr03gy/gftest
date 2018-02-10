@@ -1,6 +1,6 @@
 #!/bin/bash
 #本脚本git clone 脚本仓库到本地然后
-#上传rancher安装脚本install_rancher.sh到远程主机上指定目录运行
+#上传mysqlbackup.sh脚本到远程主机上创建mysql备份任务
 
 #check home dir
 [ -z "$HOME" ] && { echo "can't found home dir";exit 1; }
@@ -39,14 +39,12 @@ done
 }
 
 #git clone scripts to user home dir
-#[ -d "${HOME}/gftest" ] && {
-#    cd ${HOME}/gftest && git pull
-#} || {
-#    git clone https://github.com/yyr03gy/gftest.git ${HOME}/gftest || {
-#        echo "git clone failed";
-#        exit 1;
-#    }
-#}
+[ -d "${HOME}/gftest" ] || {
+    git clone https://github.com/yyr03gy/gftest.git ${HOME}/gftest || {
+        echo "git clone failed";
+        exit 1;
+    }
+}
 
 ##check expect have been installed
 [ -x "/usr/bin/expect" ] || {

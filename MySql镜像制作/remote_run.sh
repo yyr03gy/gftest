@@ -1,6 +1,6 @@
 #!/bin/bash
 #本脚本git clone 脚本仓库到本地然后
-#上传docker docker-compose安装脚本install_docker.sh到远程主机上运行
+#上传autobuild.sh脚本到远程主机上运行
 
 #check home dir
 [ -z "$HOME" ] && { echo "can't found home dir";exit 1; }
