@@ -1,0 +1,8 @@
+version: '2'
+services:
+  ldap:
+    image: ldap_ubuntu:latest
+    ports:
+      - 389:389
+    volumes:
+      - "/data/slapd:/var/lib/ldap"
