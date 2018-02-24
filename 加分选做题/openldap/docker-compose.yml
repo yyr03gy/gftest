@@ -6,3 +6,7 @@ services:
       - 389:389
     volumes:
       - "/data/slapd:/var/lib/ldap"
+    environment:
+      - SLAPD_ROOT_PASSWORD=gftest@success
+      - SLAPD_ROOT_DOMAIN=gftest.com
+      - SLAPD_ORGANIZATION=gftest

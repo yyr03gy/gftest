@@ -1,0 +1,6 @@
+version: '2'
+services:
+  fdirectory:
+    scale: 1
+  php-fpm:
+    scale: 1

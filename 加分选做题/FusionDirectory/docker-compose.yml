@@ -1,0 +1,44 @@
+version: '2'
+services:
+  fdirectory:
+    image: fusiondirectory:latest
+    ports:
+      - "8090:8080"
+    volumes:
+      - "/data/fusiondirectory/log:/var/log/apache2"
+      - "/data/fusiondirectory/etc/fusiondirectory-apache.conf:/etc/fusiondirectory/fusiondirectory-apache.conf"
+      - "/data/fusiondirectory/etc/php7.0.conf:/etc/apache2/mods-available/php7.0.conf"
+      - datacode:/var/www/fusiondirectory
+      - fusiondirectoryCache:/var/cache/fusiondirectory
+    environment:
+      - APACHE_RUN_USER=www
+      - phpfpm=10.42.88.89:9000
+#    external_links:
+#      - ldap_stack1/ldap:ldap
+#      - mysql5-stack1/db:db
+    depends_on:
+      - php-fpm
+#    links:
+#      - "php-fpm"
+    labels:
+      io.rancher.container.requested_ip: 10.42.88.88
+  php-fpm:
+    image: ubuntu_php:latest
+    volumes:
+      - "/data/php-fpm/log:/var/log/php-fpm"
+      - datacode:/var/www/fusiondirectory:ro
+      - fusiondirectoryCache:/var/cache/fusiondirectory
+    entrypoint: ["/bin/bash","-c"]
+    command: "\"/bin/cp -f /var/www/fusiondirectory/contrib/smarty/plugins/* /usr/share/php/smarty3/plugins/ && php-fpm7.0 -F\""
+    labels:
+      io.rancher.container.requested_ip: 10.42.88.89
+#    ulimits:
+#      core: -1
+#    security_opt:
+#      - seccomp:unconfined
+#    ports:
+#      - "9000:9000"
+
+volumes:
+  datacode:
+  fusiondirectoryCache:  

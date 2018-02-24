@@ -1,0 +1,19 @@
+FROM ubuntu:latest
+
+ADD sources.list /etc/apt
+
+RUN apt-get update && apt-get -y install php7.0-fpm php7.0-ldap smarty3 \
+    php7.0-curl php7.0-imap php7.0-mbstring php-imagick \
+    smarty-gettext fusiondirectory-smarty3-acl-render \
+    libpath-class-perl libnet-ldap-perl libmime-base64-urlsafe-perl \
+    libcrypt-passwdmd5-perl libcrypt-cbc-perl libfile-copy-recursive-perl \
+    libarchive-extract-perl libxml-twig-perl \
+    libjs-scriptaculous libjs-prototype smarty3 schema2ldif;\    
+    sed -i 's@listen = /run/php/php7.0-fpm.sock@listen = 9000@' /etc/php/7.0/fpm/pool.d/www.conf ;\
+    sed -i 's@error_log = /var/log/php7.0-fpm.log@error_log = /var/log/php-fpm/php7.0-fpm.log@' /etc/php/7.0/fpm/php-fpm.conf;\
+    mkdir -p /var/run/php;mkdir -p /run/php;mkdir -p /var/spool/fusiondirectory;chmod 777 /var/spool/fusiondirectory
+ 
+
+EXPOSE 9000
+
+CMD ["php-fpm7.0","-F"]

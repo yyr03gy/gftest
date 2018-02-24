@@ -22,7 +22,9 @@ function build(){
 #启动
 function run(){
     [ -d /data/slapd ] || { mkdir -p /data/slapd; }
-    docker-compose up -d && {
+    source rancher_api.conf
+    rancher-compose --url $RANCHER_URL --access-key $RANCHER_ACCESS_KEY --secret-key $RANCHER_SECRET_KEY \
+    -p ldap_stack1 up -d && {
         echo -e "\033[1;32mstart up ldap success\033[0m"
     } || {
         echo -e "\033[1;31mstart up ldap fail\033[0m"
