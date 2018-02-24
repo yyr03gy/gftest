@@ -4,12 +4,13 @@
 
 
 #downlad the rancher cli stable (current version 0.6.7) and install
-/usr/local/sbin/rancher --version | grep -q "0.6.7" && {
+/usr/local/sbin/rancher --version 2>/dev/null | grep -q "0.6.7" && {
     echo -e "\033[1;32mrancher cli v0.6.7 had been installed before\033[0m";
 } || {
     cd /tmp && \
+    aws_url="`curl -Ls -o /dev/null -w %{url_effective} -m 3 https://github.com/rancher/cli/releases/download/v0.6.7/rancher-linux-amd64-v0.6.7.tar.gz`" 
     wget -O rancher-linux-amd64-v0.6.7.tar.gz \
-    https://github.com/rancher/cli/releases/download/v0.6.7/rancher-linux-amd64-v0.6.7.tar.gz && \
+    "`echo ${aws_url}|sed 's/^https:/http:/'`" && \
     tar -xzf rancher-linux-amd64-v0.6.7.tar.gz && \
     /bin/cp -f rancher-v0.6.7/rancher /usr/local/sbin/ && \
     /usr/local/sbin/rancher --version | grep -q "0.6.7" && {
@@ -21,12 +22,13 @@
 }
 
 #download the rancher compose stable (current version v0.12.5) and install
-/usr/local/sbin/rancher-compose --version | grep -q "0.12.5" && {
+/usr/local/sbin/rancher-compose --version  2>/dev/null | grep -q "0.12.5" && {
     echo -e "\033[1;32mrancher compose v0.12.5 had been installed before\033[0m";
 } || {
     cd /tmp && \
+    aws_url="`curl -Ls -o /dev/null -w %{url_effective} -m 3 https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.xz`"
     wget -O rancher-compose-linux-amd64-v0.12.5.tar.xz \
-    https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.xz && \
+    "`echo ${aws_url}|sed 's/^https:/http:/'`" && \
     tar -xf rancher-compose-linux-amd64-v0.12.5.tar.xz && \
     /bin/cp -f rancher-compose-v0.12.5/rancher-compose /usr/local/sbin/ && \
     /usr/local/sbin/rancher-compose --version | grep -q "0.12.5" && {

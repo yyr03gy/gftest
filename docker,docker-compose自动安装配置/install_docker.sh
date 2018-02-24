@@ -43,17 +43,23 @@ apt-get -y install docker-ce
    
 #Verify that Docker CE is installed correctly
 docker run hello-world && {
-        echo -e "\033[1;32minstall docker  lastest success\033[0m";
+        echo -e "\033[1;32minstall docker  latest success\033[0m";
 } || {
-        echo "\033[1;31minstall docker  lastest failed\033[0m";
+        echo -e "\033[1;31minstall docker  latest failed\033[0m";
 		exit 1;
 }
 
 
 #install the lastest docker-compose(1.18)
-curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o \
-/usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+#get the github.com redirect url(github-production-release-asset-XXXXX.s3.amazonaws.com)
+url_aws=$(curl -Ls -o /dev/null -w %{url_effective} -m 3 https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m`)
 
+[ -n "$url_aws" ] && {
+    curl -L "${url_aws/#https:/http:}" -o /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+} || {
+    echo -e "\033[1;31mdownload docker-compose fail\033[0m"
+    exit 1
+}
 #check the docker-compose version
 docker-compose --version | grep -q "1.18.0" && {
 	echo -e "\033[1;32minstall the docker-compose 1.18.0 success\033[0m";
