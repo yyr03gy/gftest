@@ -1,0 +1,31 @@
+##文件说明
+- autobuild.sh --- 构建fusiondirectory应用镜像和php基础环境镜像并根据docker-compose.yml,rancher-compose.yml启动服务
+- docker-compose.yml --- docker-compose文件
+- Dockerfile --- fusiondirectory docker file
+- Dockerfile_base_php --- php基础环境docker file
+- rancher_api.conf --- rancher api配置文件（url,key）
+- rancher-compose.yml --- rancher-compose 文件
+- remote_run.sh --- 远程执行脚本文件，git clone 代码并上传到远程主机执行autobuild.sh脚本
+- source_install.sh --- 源码安装fusiondirectory latest(本文为止最新版本为1.2版本)，ADD到Dockerfile当中执行
+- sources.list --- 中科大的apt源，国内源，加速下载
+- startup.sh --- fusiondirectory的启动脚本（docker entrypoint），根据docker-compose.yml当中的运行用户和php环境配置初始化启动
+- ldap_connect.PNG --- ldap连接设置图
+- password_set.PNG --- 密码设置图
+- logging.PNG --- 部署完成的登录界面
+- rancher_config1.PNG --- rancher 配置图1
+- rancher_config2.PNG --- rancher 配置图2
+- rancher_stack.PNG --- rancher stack运行图
+- finish.PNG --- 最终完成图
+
+##使用说明
+- 本服务依赖于openldap服务，请先进行openldap服务的部署然后再对本服务进行部署
+- 直接执行remote_run.sh在远程主机上部署fusiondirectory服务，脚本参数说明如下：
+- -h 远程主机ip/域名
+- -P SSH端口
+- -u 用户名（要root权限用户）
+- -p 密码
+- -d 上传上述部署文件的路径
+- 执行完毕后会按照rancher_api.conf当中定义的rancher地址部署到rancher上，注意rancher_api.conf当中的access key和secret key的设置要正确。
+- 进入到fusiondirectory的界面后由于是首次运行请按照指引一步一步配置即可，要注意的是当到连接ldap服务界面时，由于在openldap服务的docker-compose.yml
+- 文件当中初始化ldap的base设置为dc=gftest,dc=com，password为gftest@successs,并且ip设置了静态ip(10.42.88.87),这里就要以上输入，相关可以
+- 参考图例（ldap连接设置图）

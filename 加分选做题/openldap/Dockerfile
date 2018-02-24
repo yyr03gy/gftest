@@ -2,6 +2,8 @@ FROM ubuntu:latest
 
 #install the slapd and ldap-utils
 
+ADD sources.list /etc/apt
+
 RUN echo "slapd slapd/password1 password password" | debconf-set-selections; \
     echo "slapd slapd/password2 password password" | debconf-set-selections; \
     apt-get update && apt-get -y install slapd ldap-utils

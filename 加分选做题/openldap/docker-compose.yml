@@ -5,7 +5,10 @@ services:
     ports:
       - 389:389
     volumes:
-      - "/data/slapd:/var/lib/ldap"
+      - /etc/ldap
+      - /var/lib/ldap
+    labels:
+      io.rancher.container.requested_ip: 10.42.88.87
     environment:
       - SLAPD_ROOT_PASSWORD=gftest@success
       - SLAPD_ROOT_DOMAIN=gftest.com

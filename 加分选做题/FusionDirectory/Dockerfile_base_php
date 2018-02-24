@@ -3,7 +3,7 @@ FROM ubuntu:latest
 ADD sources.list /etc/apt
 
 RUN apt-get update && apt-get -y install php7.0-fpm php7.0-ldap smarty3 \
-    php7.0-curl php7.0-imap php7.0-mbstring php-imagick \
+    php7.0-curl php7.0-imap php7.0-mbstring php7.0-xml php-imagick \
     smarty-gettext fusiondirectory-smarty3-acl-render \
     libpath-class-perl libnet-ldap-perl libmime-base64-urlsafe-perl \
     libcrypt-passwdmd5-perl libcrypt-cbc-perl libfile-copy-recursive-perl \

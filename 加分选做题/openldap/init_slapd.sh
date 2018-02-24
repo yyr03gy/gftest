@@ -79,10 +79,10 @@ function import_FusionDirectory_Schema(){
 }
 
 function INIT_END(){
-    echo -e "LDAP following parameter initialed\ndomain:${domain}\norganization:${organization}" > /var/lib/ldap/inited.flag
+    echo -e "LDAP following parameter initialed\ndomain:${domain}\norganization:${organization}" > /etc/ldap/inited.flag
 }
 
-if [ -f "/var/lib/ldap/inited.flag" ];then
+if [ -f "/etc/ldap/inited.flag" ];then
     echo "LDAP have been initialed before"
 else
     echo "start init LDAP"

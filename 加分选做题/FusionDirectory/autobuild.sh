@@ -40,7 +40,6 @@ function startup(){
     [ -d "/data/fusiondirectory/log" ] || { mkdir -p /data/fusiondirectory/log; }
     [ -d "/data/fusiondirectory/etc" ] || { mkdir -p /data/fusiondirectory/etc; }
     [ -d "/data/fusiondirectory/code" ] || { mkdir -p /data/fusiondirectory/code; }
-    [ -f "/data/fusiondirectory/etc/php7.0.conf" ] || { /bin/cp -f php7.0.conf /data/fusiondirectory/etc/;  }
     [ -d "/data/php-fpm/log" ] || { mkdir -p /data/php-fpm/log; }
     [ -d "/data/php-fpm/etc" ] || { mkdir -p /data/php-fpm/etc; }
     /bin/cp -f fusiondirectory-apache.conf /data/fusiondirectory/etc/

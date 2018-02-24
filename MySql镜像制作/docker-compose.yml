@@ -7,6 +7,8 @@ services:
     volumes:
       - "/data/mysql:/var/lib/mysql"
       - "${abs_path}/mysqld.cnf:/etc/mysql/mysql.conf.d/mysqld.cnf"
+    labels:
+      io.rancher.container.requested_ip: 10.42.88.86
     environment:
       - MYSQL_ROOT_PASSWORD=gftest@success
       - MYSQL_RUN_USER=gftest
